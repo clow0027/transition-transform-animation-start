@@ -35,3 +35,172 @@
 	background-color: #e89380;
 	/*orange*/
 }
+
+/* CSS Transition  */
+.transition .b1{
+	transition: width 1000ms ease-in-out 0.5s;
+}
+
+.transition .b1:hover{
+	width: 400px;
+}
+
+.transition .b2{
+	transition: width 1000ms, height 500ms 0.5s;
+	/* long hand example for writing transition time*/
+	transition-timing-function: ease-out;
+}
+
+.transition .b2:hover{
+	width: 300px;
+	height: 300px;
+	transition-delay: 0.2s;
+}
+
+.transition .b3{
+	/* See course notes for cubic bezier https://cubic-bezier.com/#.17,.93,.83,.67*/
+	transition: transform 1s cubic-bezier(.17,.93,.83,.67) 0.5s;
+}
+
+.transition .b3:hover{
+	transform: rotate(80deg);
+}
+
+.transition .b4{
+	/* here we aren't doing the transition on the width, we're doing it on 'all' */
+	transition: all 1s ease-in;
+}
+
+.transition .b4:hover{
+	background-color: purple;
+	border-radius: 30px;
+}
+
+/* CSS TRANSFORM */
+
+.transform .box{
+	transition: all 1s ease-out 0.5s;
+}
+
+.transform .b1:hover{
+	/* Great for bouncing a ball */
+	transform: translate(20px,30px);
+}
+
+.transform .b2:hover{
+	transform: scale(1.4);
+}
+
+.transform b3{
+	/* you can still say top right but still maybe get in the habit of using x axis command before y axis command */
+	transform-origin: right top;
+}
+.transform .b3:hover{
+	/* If we include no origin then it starts from the center */
+	transform: rotate(45deg);
+	/* transform-origin: right top; */
+	/* This doesn't work. You need to chnage your origin before the hover command */
+}
+
+.transform .b4{
+	transform: skewX(45deg) skewY(30deg);
+}
+
+.transform .b4:hover{
+	transform: skewX(0) skewY(0);
+}
+
+/* CSS ANIMATION DEMO */
+@keyframes changeColor{
+	from{
+		background-color: #CC80CC;
+	}
+
+	to{
+		background-color: aquamarine;
+	}
+}
+
+.animation .b1{
+	animation-name: changeColor;
+	animation-duration: 2s;
+	animation-delay: 2s;
+	/* If we leave it as is, the animation goes back to 'from' / to the default.*/
+	animation-fill-mode: forwards;
+	/* By adding this it stops at the last transition (the 'to')  */
+}
+
+@keyframes moveAround{
+	/* Let's say I want to have a box go left, down, right, up */
+	0%{
+		transform: translate(0, 0);
+	}
+
+	25%{
+		transform: translate(200px, 0);
+	}
+	/* -200 would go up on the y-axis */
+	50%{
+		transform: translate(200px, 200px);
+	}
+
+	75%{
+		transform: translate(0, 200px);
+	}
+
+	100%{
+		transform: translate(0, 0);
+	}
+}
+
+.animation .b2{
+	animation: moveAround 4s;
+	animation-delay: 3s;
+	animation-iteration-count: 3;
+}
+
+@keyframes transformMe{
+	0%{
+		transform: scale(0.5) rotateX(0) translateX(0);
+	}
+	100%{
+		transform: scale(1) rotateX(180deg) translateX(600px);
+	}
+}
+
+/* Short form example */
+.animation .b3{
+	/* name, duration, timing function, delay, count, direction, fill */
+	/* alternate = goes back like in the pendulum example */
+	animation: transformMe 1.5s ease-out 3s 12 alternate forwards;
+}
+
+.animation .b3:hover{
+	animation-play-state: paused;
+
+}
+
+@keyframes rotateX{
+	0%{
+		translate: rotateX(0) translateX(0);
+	}
+	50%{
+		translate: rotateX(180deg) translateX(600px);
+	}
+	100%{
+		translate: rotateX(0) translateX(0px);
+	}
+}
+
+/* Assignment
+
+Animation #1: no pause on the animation 
+	ex. .animation .b3
+
+Animation #2: on hover 
+		some kind of animation that changes two CSS properties
+		ex. .animation .b3:hover
+
+Animation #3: on active state
+		ex. .animation .b3:active */
+	
